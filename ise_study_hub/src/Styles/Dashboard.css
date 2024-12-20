@@ -1,0 +1,59 @@
+.dashboard-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+.dashboard-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.dashboard-button:hover {
+  background-color: white;
+  color: #007bff; /* Blue color for hover */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-menu {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  width: 180px; /* Fixed width for better alignment */
+}
+
+.dashboard-menu h3 {
+  margin: 0;
+  color: #333; /* Dark gray for the heading */
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.dashboard-link {
+  display: block;
+  background-color: #0658b0; /* Blue button background */
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}

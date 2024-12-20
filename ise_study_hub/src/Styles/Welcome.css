@@ -1,0 +1,118 @@
+/* Welcome.css */
+.welcome-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff; /* Changed background color to white */
+  flex-direction: column;
+  text-align: center; /* Ensure text is centered */
+  color: black; /* Changed text color to black for visibility on white background */
+}
+
+.logo-container {
+  position: relative;
+  animation: logoAnimation 2s ease-out forwards;
+  margin-bottom: 20px; /* Space between logo and button */
+}
+
+@keyframes logoAnimation {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(20px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  animation: bounceEffect 1.5s ease-out forwards;
+}
+
+@keyframes bounceEffect {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.welcome-message {
+  opacity: 0;
+  animation: fadeIn 2s ease-out 1.5s forwards; /* Fade-in with a shorter delay */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.welcome-message h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.welcome-message p {
+  font-size: 1.2rem;
+  margin-bottom: 30px; /* Adds space between message and button */
+}
+
+.start-button {
+  opacity: 0; /* Initially hidden */
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  animation: buttonFadeIn 1s ease-out 2.5s forwards; /* Faster fade-in */
+}
+
+@keyframes buttonFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.start-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1); /* Slightly scale the button on hover */
+}
+
+.start-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(0, 123, 255, 0.5);
+}
+
+/* Add a "press" effect when the button is clicked */
+.start-button:active {
+  transform: scale(0.95); /* Shrink the button to give the "press" effect */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Quick transition for "press" effect */
+}

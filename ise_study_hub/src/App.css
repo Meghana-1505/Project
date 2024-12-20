@@ -1,0 +1,20 @@
+/* src/App.css */
+
+body {
+  background-image: url('./Assets/Background2.jpg');  /* Adjust the path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps background fixed during scroll */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
