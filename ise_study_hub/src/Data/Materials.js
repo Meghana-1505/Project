@@ -56,11 +56,11 @@ export const materialsData = {
   ],
 
   physics_for_CS : [
-    {title: "Module1" , link:"https://drive.google.com/file/d/1gWLBr5Cm3YOCGAsdr5R9y4TrBy8680H0/view?usp=sharing", description:"Lasers and Optimal Fibers"}, 
-    {title: "Module2" , link:"https://drive.google.com/file/d/1JJOYRbZN9KfXeX-TKpjUy2SZ2bJrL6rm/view?usp=sharing", description:"Quantum Mechanics"}, 
-    {title: "Module3" , link:"https://drive.google.com/file/d/1mC5c-tlCH094dlUGhgaQtzBKgtUqStFd/view?usp=sharing", description:"Electrical properties of materials"}, 
-    {title: "Module4" , link:"https://drive.google.com/file/d/18ol-MdSXu9VNeCe31McKGw2kpHue-Kj2/view?usp=sharing", description:"Physics of Materials"}, 
-    {title: "Module5" , link:"https://drive.google.com/file/d/18ol-MdSXu9VNeCe31McKGw2kpHue-Kj2/view?usp=sharing", description:"Quantum Computing"}, 
+    {title: "Module1" , link:"https://drive.google.com/file/d/1gWLBr5Cm3YOCGAsdr5R9y4TrBy8680H0/view?usp=sharing", description:""}, 
+    {title: "Module2" , link:"https://drive.google.com/file/d/1JJOYRbZN9KfXeX-TKpjUy2SZ2bJrL6rm/view?usp=sharing", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/1mC5c-tlCH094dlUGhgaQtzBKgtUqStFd/view?usp=sharing", description:""}, 
+    {title: "Module4" , link:"https://drive.google.com/file/d/18ol-MdSXu9VNeCe31McKGw2kpHue-Kj2/view?usp=sharing", description:""}, 
+    {title: "Module5" , link:"https://drive.google.com/file/d/18ol-MdSXu9VNeCe31McKGw2kpHue-Kj2/view?usp=sharing", description:""}, 
     {title: "Question Bank" , link:"https://drive.google.com/file/d/1_gyd7mWjY6bIz0bEZ4g_jDWhHm58tVjY/view?usp=sharing", description:""}, 
   ],
 
@@ -84,7 +84,7 @@ export const materialsData = {
 
   math_CS_stream_2: [
     {title: "Maths Formula HandBook" , link:"https://drive.google.com/file/d/1X0NTg4KWTrU0y89jTy_5se0nrP3nFHlt/view?usp=sharing", description:""},
-
+    {title: "Model Question Paper" , link:"https://drive.google.com/file/d/1aB6rW2Vhb3UGzPvHgAK3k0xAwE_WR1ZB/view?usp=sharing", description:""},
   ], 
 
   //3rd sem  
@@ -122,7 +122,7 @@ export const materialsData = {
 
   math_CS:[
     {title: "Maths Formula HandBook" , link:"https://drive.google.com/file/d/16Uz9Bn1jmNVTx17JIpI7TehCYNEZAHh9/view?usp=sharing", description:""},
-
+    {title: "Model Question Paper" , link:"https://drive.google.com/file/d/1OIycjiBEEvbA741PbKaAYZRQD-dpYdIv/view?usp=sharing", description:""},
   ], 
 
   operating_system:[
@@ -168,6 +168,7 @@ export const materialsData = {
 
   advanced_java: [
     {title: "Question Bank" , link:"https://drive.google.com/file/d/1bSGELh1BwfOnRyxh783ZtJt3I4nuQ1M7/view?usp=sharing", description:""},
+    {title: "TextBook" , link:"https://drive.google.com/file/d/1gDQ6LnLgYxGT9GuGW1Zvpyicuz2sY6jo/view?usp=sharing", description:""},
   ], 
 
   biology_for_engineers: [
@@ -177,11 +178,11 @@ export const materialsData = {
   //5TH sem 
 
   software_engineering: [
-    {title: "Module1" , link:"", description:""}, 
-    {title: "Module2" , link:"", description:""}, 
-    {title: "Module3" , link:"", description:""}, 
-    {title: "Module4" , link:"", description:""}, 
-    {title: "Module5" , link:"", description:""}, 
+    {title: "Module1" , link:"https://drive.google.com/file/d/1_UjUKa69dJZwv4CHUDs3HNpmmm045uMZ/view?usp=sharing", description:""}, 
+    {title: "Module2" , link:"https://drive.google.com/file/d/1FTRRpm60yIHmtQVKPT5HNmJL_PSgFmik/view?usp=sharing", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/17jWT0RATZU744iScKzNWke5k2XSq83GP/view?usp=sharing", description:""}, 
+    {title: "Module4" , link:"https://drive.google.com/file/d/1aXT2kbItUHf2KLslOtoogOhQ3xVtARi8/view?usp=sharing", description:""}, 
+    {title: "Module5" , link:"https://drive.google.com/file/d/1vQR6CbJ3RvGT_dJAOit_j2RkROKlXzsw/view?usp=sharing", description:""}, 
   ], 
 
   computer_networks: [
@@ -199,7 +200,7 @@ export const materialsData = {
   cloud_computing: [
     {title: "Module1" , link:"https://drive.google.com/file/d/1bRpQALjSX1MPm2kPrcpHMWUDst0-Y5Cc/view?usp=sharing", description:""}, 
     {title: "Module2" , link:"https://drive.google.com/file/d/1_8v4aUgfUcu6iEkcRlc6hByWQEihTycJ/view?usp=sharing", description:""}, 
-    {title: "Module3" , link:"", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/10kRWo9mvRHELu9gqrPalMMHPc3tGAacl/view?usp=sharing", description:""}, 
     {title: "Module4" , link:"https://drive.google.com/file/d/1CLHfa07GnOSSiuC8xE3JNpkAcy_WSWVj/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/1_VgV6WKt8EP823b2crMxRdvbyV5tz7lR/view?usp=sharing", description:""}, 
     {title: "Text Book" , link:"https://drive.google.com/file/d/1vyK-tEc6LM41k7vIiI3miVp195qUwy2d/view?usp=sharing" , description:""},
@@ -209,8 +210,8 @@ export const materialsData = {
     {title: "Module1" , link:"https://drive.google.com/file/d/1X9f8qFnPQqbLdy2jVT6_-DgS1oGCUQZQ/view?usp=sharing", description:""}, 
     {title: "Module2" , link:"https://drive.google.com/file/d/1T4mf8LimRryqRn8WBR_rthJbLCQIuUyE/view?usp=sharing", description:""}, 
     {title: "Module3" , link:"https://drive.google.com/file/d/10ufhKTJOBuMjw8NNZ9mjzP1Vm0OVdc6W/view?usp=sharing", description:""}, 
-    {title: "Module4" , link:"", description:""}, 
-    {title: "Module5" , link:"", description:""}, 
+    {title: "Module4" , link:"https://drive.google.com/file/d/1BlckoDWD5f9Q1ATBIv3rsbXW87gcugr1/view?usp=sharing", description:""}, 
+    {title: "Module5" , link:"https://drive.google.com/file/d/1tF6j6gC8AQbsGyt3GobhPt7PXH0D8LCN/view?usp=sharing", description:""}, 
     {title: "Text Book" , link:"https://drive.google.com/file/d/18-NG05GbTr8cHCTS2kZH7FjLgtu8ZYxJ/view?usp=sharing", description:""},
   ],  
 
@@ -229,7 +230,7 @@ export const materialsData = {
   research_ipr: [
     {title: "Module1" , link:"https://drive.google.com/file/d/1WwEtG0NRRCMGzRSmHpGzLdiPNyXv5QbV/view?usp=sharing", description:""}, 
     {title: "Module2" , link:"https://drive.google.com/file/d/1bAXaulN5sZVTAKuSIBpezCUjni_w8jkF/view?usp=sharing", description:""}, 
-    {title: "Module3" , link:"", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/1dvJ6iQrObh0IeIcg7YZLigCCUDYEytYq/view?usp=sharing", description:""}, 
   ]
 
 
