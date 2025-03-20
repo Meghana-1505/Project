@@ -183,6 +183,7 @@ export const materialsData = {
     {title: "Module3" , link:"https://drive.google.com/file/d/17jWT0RATZU744iScKzNWke5k2XSq83GP/view?usp=sharing", description:""}, 
     {title: "Module4" , link:"https://drive.google.com/file/d/1aXT2kbItUHf2KLslOtoogOhQ3xVtARi8/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/1vQR6CbJ3RvGT_dJAOit_j2RkROKlXzsw/view?usp=sharing", description:""}, 
+    {title: "Previous Year Question Paper" , link:"https://drive.google.com/file/d/1xSWMtw91T4po6G2XlqxcRqvHXd744ZEr/view?usp=sharing", description:""},
   ], 
 
   computer_networks: [
@@ -191,10 +192,12 @@ export const materialsData = {
     {title: "Module3" , link:"https://drive.google.com/file/d/1WtQ78ThPU_20P31Fk2Q0PC7fULg0I45e/view?usp=sharing", description:""}, 
     {title: "Module4" , link:"https://drive.google.com/file/d/1SRMJnGXToZcKTBP9BW5NrHE99keCszHd/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/18Z6xmFsI0Ll1p5zuOhsh-8gwPge6H5nd/view?usp=sharing", description:""}, 
+    {title: "Previous Year Question Paper" , link:"https://drive.google.com/file/d/1kvJI-MXtNIEL24DhXN3qO8Ww9-KyezxG/view?usp=sharing", description:""},
   ], 
 
   theory_of_computation: [
     {title: "Text Book" , link:"https://drive.google.com/file/d/1-Sud4-QyM6b9ih44cOh9Wq6NJOBg6TNc/view?usp=sharing", description:""}, 
+    {title: "Previous Year Question Paper" , link:"https://drive.google.com/file/d/1PC-sgTqk524hoihnYqney92Z49WZz2Yx/view?usp=sharing", description:""},
   ],   
 
   cloud_computing: [
@@ -204,6 +207,7 @@ export const materialsData = {
     {title: "Module4" , link:"https://drive.google.com/file/d/1CLHfa07GnOSSiuC8xE3JNpkAcy_WSWVj/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/1_VgV6WKt8EP823b2crMxRdvbyV5tz7lR/view?usp=sharing", description:""}, 
     {title: "Text Book" , link:"https://drive.google.com/file/d/1vyK-tEc6LM41k7vIiI3miVp195qUwy2d/view?usp=sharing" , description:""},
+    {title: "Previous Year Question Paper" , link:"https://drive.google.com/file/d/1m9zqFUR3bnW44rKGG6_NEPjYdvdkMY6_/view?usp=sharing", description:""},
   ],  
 
   artificial_intelligence: [
@@ -213,6 +217,7 @@ export const materialsData = {
     {title: "Module4" , link:"https://drive.google.com/file/d/1BlckoDWD5f9Q1ATBIv3rsbXW87gcugr1/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/1tF6j6gC8AQbsGyt3GobhPt7PXH0D8LCN/view?usp=sharing", description:""}, 
     {title: "Text Book" , link:"https://drive.google.com/file/d/18-NG05GbTr8cHCTS2kZH7FjLgtu8ZYxJ/view?usp=sharing", description:""},
+    {title: "Previous Year Question Paper" , link:"https://drive.google.com/file/d/18yWxckg9tH6WzIUrd9d0s-ZbiHIA5sGK/view?usp=sharing", description:""},
   ],  
 
   distributed_systems: [
@@ -225,13 +230,45 @@ export const materialsData = {
     {title: "Module3" , link:"https://drive.google.com/file/d/10n-_mhVOBxDauXt4D71-koF6mgM409yy/view?usp=sharing", description:""}, 
     {title: "Module4" , link:"https://drive.google.com/file/d/1g9JBWHXxoagzFYPvFmdeb0qzyPfFVhiR/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/1Q58av9cLIXqiH_-nttpHNuLk18CqCwrP/view?usp=sharing", description:""}, 
+    {title: "Previous Year Question Paper" , link:"https://drive.google.com/file/d/1Ldu-xxYryR32nlHHxM8M86_D9Ea2y1qD/view?usp=sharing", description:""},
   ],  
 
   research_ipr: [
     {title: "Module1" , link:"https://drive.google.com/file/d/1WwEtG0NRRCMGzRSmHpGzLdiPNyXv5QbV/view?usp=sharing", description:""}, 
     {title: "Module2" , link:"https://drive.google.com/file/d/1bAXaulN5sZVTAKuSIBpezCUjni_w8jkF/view?usp=sharing", description:""}, 
     {title: "Module3" , link:"https://drive.google.com/file/d/1dvJ6iQrObh0IeIcg7YZLigCCUDYEytYq/view?usp=sharing", description:""}, 
-  ]
+  ], 
 
+  //6th sem 
+  block_chain: [
+    {title: "Module1" , link:"https://drive.google.com/file/d/1oA1Ze_GVVVe2jDdDcyoL5jgvt7pkp14P/view?usp=sharing", description:""}, 
+    {title: "Module2" , link:"https://drive.google.com/file/d/1e2bECII1TcwnO-r3cgUw_N_2L2otTbg4/view?usp=sharing", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/1_f8Smh8M9Nyt5cc9LeY6pnEFagoWn2zy/view?usp=sharing", description:""}, 
+    {title: "Module4" , link:"https://drive.google.com/file/d/1Hydaahsydei1YGd1ETJ9w2EXgEXMYLpO/view?usp=sharing", description:""}, 
+    {title: "Module5" , link:"https://drive.google.com/file/d/1jq088dcQ5U8_GJyPzGV75AC6HaTmGSbl/view?usp=sharing", description:""}, 
+    {title: "Text Book" , link:"https://drive.google.com/file/d/1wABZ7jyGvU9aiaaN5f7KzRshySfvCUdj/view?usp=sharing", description:""},
+  ],   
+
+  cryptography_and_network_security: [
+    {title: "Module1" , link:"https://drive.google.com/file/d/1wzcVfZ2lzLpD6PKBmUzseXOqGFIShtCz/view?usp=sharing", description:""}, 
+    {title: "Module2" , link:"https://drive.google.com/file/d/1zEik9VnnARnImMI61taDGQ7i7e7x0o9X/view?usp=sharing", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/1XhjHAPIl9OLF3ZryyoHRBDUpVTNo0L3C/view?usp=sharing", description:""}, 
+    {title: "Module4" , link:"https://drive.google.com/file/d/1cZ90ktDdifK25DH_6B-Tfabn3yJS8rUt/view?usp=sharing", description:""}, 
+    {title: "Module5" , link:"https://drive.google.com/file/d/1sj_5mND0PzAk1_7J00ZdcHf-kFxvKzA3/view?usp=sharing", description:""}, 
+  ], 
+
+  software_architecture_and_design_pattern: [
+    {title: "Module1" , link:"https://drive.google.com/file/d/1knncoJGm3nG3YFNS6m1bUo3R3GpdGCP4/view?usp=sharing", description:""}, 
+  ], 
+
+  full_stack_web_development:[
+    {title: "Module1" , link:"https://drive.google.com/file/d/1sH_ZAXUf2lh3xc3YREVYukI4weQEQmkq/view?usp=sharing", description:""}, 
+    {title: "Module2" , link:"https://drive.google.com/file/d/13-o_S3PH_tY8GephuWsCjpzcfo3j6P3H/view?usp=sharing", description:""}, 
+    {title: "Module3" , link:"https://drive.google.com/file/d/1lCpIl2cRzS7HQJvczcNsl7EXGbNoyOIh/view?usp=sharing", description:""}, 
+    {title: "Module4" , link:"https://drive.google.com/file/d/1IgoLFEKFOJLJ6RV2Ml-LJwlv0LSDp3X_/view?usp=sharing", description:""}, 
+    {title: "Module5" , link:"https://drive.google.com/file/d/1EYFNxYFo_X452kWdvVFGy8If0uqfkpsX/view?usp=sharing", description:""}, 
+    {title: "Text Book" , link:"https://drive.google.com/file/d/1OHOBR3AATUx57nLWR4G4EqiHqzRJ0IS3/view?usp=sharing", description:""},
+     {title: "Text Book" , link:"https://drive.google.com/file/d/1OHOBR3AATUx57nLWR4G4EqiHqzRJ0IS3/view?usp=sharing", description:""},
+  ], 
 
 };

@@ -18,7 +18,7 @@ function SubjectMaterials() {
 
   return (
     <div className="subject-materials-page">
-      <Dashboard /> {/* Adding Dashboard component */}
+       <Dashboard />
       <h1>Materials for {subjectId}</h1>
       <div className="materials-container">
         {materials.map((material, index) => (

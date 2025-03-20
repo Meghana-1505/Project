@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../Styles/SemesterSubjects.css';
-import Dashboard from './Dashboard'; // Import Dashboard component
+import Dashboard from './Dashboard';
 
 // Importing subject images for all semesters
 import chemistryImage from '../Assets/chemistry.jpg';
@@ -17,11 +17,13 @@ import physicsForCSImage from '../Assets/physicsForCS.jpg';
 import mathCSStream2Image from '../Assets/mathCSStream2.jpg';
 import electronicsImage from '../Assets/electronics.jpg';
 
+
 import dataStructuresImage from '../Assets/dataStructures.jpg';
 import operatingSystemImage from '../Assets/operatingSystem.jpg';
 import javaImage from '../Assets/java.jpg';
 import mathCSImage from '../Assets/mathCS.jpg';
 import digitalDesignImage from '../Assets/digitalDesign.jpg';
+
 
 import humanValuesImage from '../Assets/humanValues.jpg';
 import algoDesignImage from '../Assets/algoLab.jpg';
@@ -39,6 +41,12 @@ import distributedSystemsImage from '../Assets/distributedSystems.jpg';
 import unixProgrammingImage from '../Assets/unix.jpg';
 import researchIPRImage from '../Assets/researchIPR.jpg';
 
+import blockchainImage from '../Assets/blockchain.webp'; 
+import cnsImage from '../Assets/cns.webp';  
+import sadpImage from '../Assets/sadp.jpg'; 
+import fsdImage from '../Assets/fsd.webp'; 
+
+
 // Subject data for all semesters
 const subjectsData = {
   1: [
@@ -50,7 +58,7 @@ const subjectsData = {
     { id: 'mechanical', name: 'Mechanical Engineering', image: mechanicalImage },
   ],
   2: [
-    { id: 'renewable_resourse', name: 'Renewable Resourse', image: renewableResourceImage },
+    { id: 'renewable_resourse', name: 'Renewable Resourse', image:renewableResourceImage},
     { id: 'c_programming', name: 'Principles of Programming using C', image: cProgrammingImage },
     { id: 'physics_for_CS', name: 'Physics for CS', image: physicsForCSImage },
     { id: 'math_CS_stream_2', name: 'Mathematics for CS Stream-II', image: mathCSStream2Image },
@@ -62,6 +70,7 @@ const subjectsData = {
     { id: 'object_oriented_programming', name: 'Object-Oriented Programming with Java', image: javaImage },
     { id: 'math_CS', name: 'Mathematics for CS', image: mathCSImage },
     { id: 'digital_design', name: 'Digital Design & Computer Organization', image: digitalDesignImage },
+   
   ],
   4: [
     { id: 'human_values', name: 'Universal Human Values Course', image: humanValuesImage },
@@ -81,33 +90,47 @@ const subjectsData = {
     { id: 'unix_system_programming', name: 'UNIX System Programming', image: unixProgrammingImage },
     { id: 'research_ipr', name: 'Research Methodology and IPR', image: researchIPRImage },
   ],
+  6: [
+    {id: 'block_chain', name: 'Blockchain and Technology', image: blockchainImage},
+    {id: 'cryptography_and_network_security', name: 'Cryptography and Network Security', image: cnsImage},
+    {id: 'software_architecture_and_design_pattern', name: 'Software Architecture and Design Pattern', image: sadpImage},
+    {id: 'full_stack_web_development', name: 'Full Stack Web Development', image: fsdImage},
+  ],
+ 
 };
 
 const SemesterSubjects = () => {
   const { year, semesterId } = useParams(); // Get year and semesterId from URL parameters
 
   // Check if subjects data exists for the current semester
-  const subjects = subjectsData[semesterId] || [];
+  const subjects = subjectsData[semesterId] || []; 
   console.log("Year:", year, "Semester ID:", semesterId);
 
   return (
     <div className="semester-subjects">
-      <Dashboard /> {/* Add the Dashboard button here */}
+      <Dashboard />
       <h1>{`Subjects for Semester ${semesterId}`}</h1>
-      <div className="subjects-list">
-        {subjects.map((subject) => (
-          <Link
-            key={subject.id}
-            to={`/year/${year}/semester/${semesterId}/subject/${subject.id}`} // Navigate to the respective subject page
-            className="subject-item"
-          >
-            <img src={subject.image} alt={subject.name} className="subject-image" />
-            <span>{subject.name}</span>
-          </Link>
-        ))}
-      </div>
+
+      {/* Display message if no subjects exist (for 7th and 8th semester) */}
+      {subjects.length === 0 ? (
+       <p style={{ fontSize: "2.5rem", fontWeight: "bold" }}>Will be coming soon.</p>
+      ) : (
+        <div className="subjects-list">
+          {subjects.map((subject) => (
+            <Link
+              key={subject.id}
+              to={`/year/${year}/semester/${semesterId}/subject/${subject.id}`} // Navigate to the respective subject page
+              className="subject-item"
+            >
+              <img src={subject.image} alt={subject.name} className="subject-image" />
+              <span>{subject.name}</span>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
+
 
 export default SemesterSubjects;

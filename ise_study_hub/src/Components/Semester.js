@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Dashboard from './Dashboard';
 import firstSemLogo from '../Assets/Firstsem.jpeg';
 import secondSemLogo from '../Assets/Secondsem.jpeg';
 import thirdSemLogo from '../Assets/3sem.jpeg';
@@ -9,7 +10,6 @@ import sixthSemLogo from '../Assets/6sem.jpeg';
 import seventhSemLogo from '../Assets/7sem.jpeg';
 import eighthSemLogo from '../Assets/8sem.jpeg';
 import '../Styles/Semester.css';
-import Dashboard from './Dashboard'; // Import Dashboard component
 
 function Semester() {
   const { year } = useParams(); // Access the year parameter
@@ -36,11 +36,12 @@ function Semester() {
 
   const handleSemesterClick = (semesterId) => {
     navigate(`/year/${year}/semester/${semesterId}`);
+
   };
 
   return (
     <div className="semester-page">
-      <Dashboard /> {/* Add the Dashboard button here */}
+       <Dashboard />
       <h1>{`Year ${year} - Select Semester`}</h1>
       <div className="semester-list">
         {semesterData[year]?.map((semester) => (
