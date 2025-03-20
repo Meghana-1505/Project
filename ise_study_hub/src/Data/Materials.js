@@ -268,7 +268,6 @@ export const materialsData = {
     {title: "Module4" , link:"https://drive.google.com/file/d/1IgoLFEKFOJLJ6RV2Ml-LJwlv0LSDp3X_/view?usp=sharing", description:""}, 
     {title: "Module5" , link:"https://drive.google.com/file/d/1EYFNxYFo_X452kWdvVFGy8If0uqfkpsX/view?usp=sharing", description:""}, 
     {title: "Text Book" , link:"https://drive.google.com/file/d/1OHOBR3AATUx57nLWR4G4EqiHqzRJ0IS3/view?usp=sharing", description:""},
-     {title: "Text Book" , link:"https://drive.google.com/file/d/1OHOBR3AATUx57nLWR4G4EqiHqzRJ0IS3/view?usp=sharing", description:""},
   ], 
 
 };
