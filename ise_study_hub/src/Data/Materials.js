@@ -262,11 +262,7 @@ export const materialsData = {
   ], 
 
   full_stack_web_development:[
-    {title: "Module1" , link:"https://drive.google.com/file/d/1sH_ZAXUf2lh3xc3YREVYukI4weQEQmkq/view?usp=sharing", description:""}, 
-    {title: "Module2" , link:"https://drive.google.com/file/d/13-o_S3PH_tY8GephuWsCjpzcfo3j6P3H/view?usp=sharing", description:""}, 
-    {title: "Module3" , link:"https://drive.google.com/file/d/1lCpIl2cRzS7HQJvczcNsl7EXGbNoyOIh/view?usp=sharing", description:""}, 
-    {title: "Module4" , link:"https://drive.google.com/file/d/1IgoLFEKFOJLJ6RV2Ml-LJwlv0LSDp3X_/view?usp=sharing", description:""}, 
-    {title: "Module5" , link:"https://drive.google.com/file/d/1EYFNxYFo_X452kWdvVFGy8If0uqfkpsX/view?usp=sharing", description:""}, 
+    {title: "Module1" , link:"https://drive.google.com/file/d/1KptmsePtK7JypWMUXRGcaiudnjXc-a9h/view?usp=sharing", description:""}, 
     {title: "Text Book" , link:"https://drive.google.com/file/d/1OHOBR3AATUx57nLWR4G4EqiHqzRJ0IS3/view?usp=sharing", description:""},
   ], 
 
