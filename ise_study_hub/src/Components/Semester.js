@@ -1,6 +1,9 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Dashboard from './Dashboard';
+import SearchSubjects from './SearchSubjects';
+import '../Styles/Semester.css';
+
 import firstSemLogo from '../Assets/Firstsem.jpeg';
 import secondSemLogo from '../Assets/Secondsem.jpeg';
 import thirdSemLogo from '../Assets/3sem.jpeg';
@@ -9,10 +12,9 @@ import fifthSemLogo from '../Assets/5sem.jpeg';
 import sixthSemLogo from '../Assets/6sem.jpeg';
 import seventhSemLogo from '../Assets/7sem.jpeg';
 import eighthSemLogo from '../Assets/8sem.jpeg';
-import '../Styles/Semester.css';
 
 function Semester() {
-  const { year } = useParams(); // Access the year parameter
+  const { year } = useParams();
   const navigate = useNavigate();
 
   const semesterData = {
@@ -34,26 +36,28 @@ function Semester() {
     ]
   };
 
-  const handleSemesterClick = (semesterId) => {
-    navigate(`/year/${year}/semester/${semesterId}`);
-
-  };
+  const semesters = semesterData[year] || [];
 
   return (
     <div className="semester-page">
-       <Dashboard />
-      <h1>{`Year ${year} - Select Semester`}</h1>
-      <div className="semester-list">
-        {semesterData[year]?.map((semester) => (
-          <div
-            key={semester.id}
-            onClick={() => handleSemesterClick(semester.id)}
-            className="semester-item"
-          >
-            <img src={semester.logo} alt={`${semester.name} Logo`} className="semester-logo" />
-            <span>{semester.name}</span>
-          </div>
-        ))}
+      <Dashboard />
+      <div className="search-container">
+        <SearchSubjects />
+      </div>
+      <div className="semester-right">
+        <h1 className="semester-title">{`Year ${year} - Select Semester`}</h1>
+        <div className="semester-list">
+          {semesters.map((semester) => (
+            <div
+              key={semester.id}
+              onClick={() => navigate(`/year/${year}/semester/${semester.id}`)}
+              className="semester-item"
+            >
+              <img src={semester.logo} alt={semester.name} className="semester-logo" />
+              <span>{semester.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

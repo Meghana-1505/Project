@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
-import '../Styles/Welcome.css';  // Import CSS for animations
-import logo from '../Assets/logo.webp'; // Your logo image
+import '../Styles/Welcome.css';  
+import logo from '../Assets/logo.webp'; 
 
 const Welcome = () => {
   const navigate = useNavigate(); // Initialize navigate

@@ -1,9 +1,10 @@
+// src/Components/Year.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Dashboard from './Dashboard'; // Import Dashboard
+import Dashboard from './Dashboard';
+import SearchSubjects from './SearchSubjects';
 import '../Styles/Year.css';
 
-// Assuming you have logos for each year
 import year1Logo from '../Assets/FirstYear.jpg';
 import year2Logo from '../Assets/SecondYear.jpg';
 import year3Logo from '../Assets/ThirdYear.jpg';
@@ -12,8 +13,8 @@ import year4Logo from '../Assets/FourthYear.jpg';
 const Year = () => {
   return (
     <div className="year-page">
-      {/* Dashboard button */}
       <Dashboard />
+      <SearchSubjects />
 
       <h1 className="year-title">Select Year</h1>
       <div className="year-list">

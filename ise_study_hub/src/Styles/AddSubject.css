@@ -1,0 +1,85 @@
+.add-subject-background {
+  background-image: url('../Assets/Background1.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* keeps it fixed */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.add-subject-container {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  padding: 30px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.add-subject-container h2 {
+  margin-bottom: 24px;
+  color: #222;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.add-subject-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-subject-form input,
+.add-subject-form select {
+  padding: 12px 16px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.add-subject-form input::placeholder,
+.add-subject-form select::placeholder {
+  color: #333; /* same placeholder color */
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 16px;
+}
+
+.add-subject-form input:focus,
+.add-subject-form select:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+.add-subject-form button {
+  padding: 14px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-subject-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.add-subject-form p {
+  margin: 0;
+  font-size: 14px;
+}
+ 
