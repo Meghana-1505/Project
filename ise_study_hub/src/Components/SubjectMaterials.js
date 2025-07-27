@@ -11,72 +11,52 @@ function SubjectMaterials() {
   const { subjectId } = useParams();
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [downloading, setDownloading] = useState(false); // optional: show loading for zip
 
   useEffect(() => {
     const fetchMaterials = async () => {
       try {
-        const q = query(
-          collection(db, 'materials'),
-          where('subject', '==', subjectId)
-        );
+        const q = query(collection(db, 'materials'), where('subject', '==', subjectId));
         const querySnapshot = await getDocs(q);
-        const fetchedMaterials = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-
-        // Sort by module number if format is "Module X"
-        fetchedMaterials.sort((a, b) => {
+        const fetched = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        fetched.sort((a, b) => {
           if (a.module?.startsWith("Module") && b.module?.startsWith("Module")) {
             return parseInt(a.module.split(" ")[1]) - parseInt(b.module.split(" ")[1]);
           }
           return (a.module || '').localeCompare(b.module || '');
         });
-
-        setMaterials(fetchedMaterials);
+        setMaterials(fetched);
       } catch (error) {
         console.error('Error fetching materials:', error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchMaterials();
   }, [subjectId]);
 
   const handleDownloadZip = async () => {
-    if (materials.length === 0) return;
-
-    setDownloading(true);
     const zip = new JSZip();
-
     for (const material of materials) {
-      try {
-        // Extract file ID from Google Drive link
-        const fileId = material.url.match(/\/d\/(.*?)\//)?.[1];
-        if (!fileId) continue;
-
-        // Direct download link
-        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
-        const response = await fetch(downloadUrl);
-        const blob = await response.blob();
-
-        // Add to zip: name it by module
-        zip.file(`${material.module}.pdf`, blob);
-      } catch (error) {
-        console.error(`Failed to download ${material.module}:`, error);
+      if (material.url) {
+        // Extract file ID
+        const fileIdMatch = material.url.match(/\/d\/(.*?)\//);
+        if (fileIdMatch && fileIdMatch[1]) {
+          const fileId = fileIdMatch[1];
+          const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+          try {
+            const response = await fetch(downloadUrl);
+            const blob = await response.blob();
+            // Add to zip with module name
+            zip.file(`${material.module}.pdf`, blob);
+          } catch (err) {
+            console.error(`Failed to fetch ${material.module}`, err);
+          }
+        }
       }
     }
-
-    // Generate and download
-    zip.generateAsync({ type: "blob" }).then((content) => {
-      saveAs(content, `${subjectId.replace(/_/g, ' ')}_materials.zip`);
-      setDownloading(false);
-    }).catch((error) => {
-      console.error('Failed to generate zip:', error);
-      setDownloading(false);
-    });
+    // Generate and save
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    saveAs(zipBlob, `${subjectId}_materials.zip`);
   };
 
   if (loading) {
@@ -101,9 +81,7 @@ function SubjectMaterials() {
     <div className="subject-materials-page">
       <Dashboard />
       <h1>Materials for {subjectId.replace(/_/g, ' ')}</h1>
-      <button onClick={handleDownloadZip} disabled={downloading}>
-        {downloading ? "Preparing ZIP..." : "📦 Download All as ZIP"}
-      </button>
+      <button onClick={handleDownloadZip}>⬇ Download All as ZIP</button>
       <div className="materials-container">
         {materials.map((material) => (
           <div key={material.id} className="material-item">
