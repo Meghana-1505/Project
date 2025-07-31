@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignIn from './Components/SignIn';
 import Welcome from './Components/Welcome';
 import Year from './Components/Year';
 import Semester from './Components/Semester';
@@ -17,7 +18,8 @@ function App() {
       <Router>
         <Routes>
           {/* Default route */}
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<SignIn />} />
+          <Route path="/welcome" element={<Welcome />} />
 
           {/* Year and Semester routes */}
           <Route path="/year" element={<Year />} />

@@ -1,11 +1,12 @@
+// src/Components/AddSubject.js
 import React, { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import "../Styles/AddSubject.css"; // import CSS
+import "../Styles/AddSubject.css";
 
 function AddSubject() {
   const [subjectId, setSubjectId] = useState("");
-  const [name, setName] = useState("");
+  const [subjectName, setSubjectName] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [semester, setSemester] = useState("");
   const [year, setYear] = useState("");
@@ -13,21 +14,22 @@ function AddSubject() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleAddSubject = async () => {
-    if (!subjectId || !name || !imageURL || !semester || !year) {
+    if (!subjectId || !subjectName || !imageURL || !semester || !year) {
       setErrorMsg("❗ Please fill all fields.");
       setTimeout(() => setErrorMsg(""), 3000);
       return;
     }
     try {
-      const newDocRef = doc(db, "Subjects", subjectId.trim());
-      await setDoc(newDocRef, {
-        name: name.trim(),
+      const docRef = doc(db, "Subject and Materials", subjectId.trim().toLowerCase());
+      await setDoc(docRef, {
+        subject: subjectName.trim(),
         imageURL: imageURL.trim(),
         semester: semester.trim(),
-        year: year.trim()
+        year: year.trim(),
+        materials: []  // empty initially
       });
       setSuccessMsg("✅ Subject added successfully!");
-      setSubjectId(""); setName(""); setImageURL(""); setSemester(""); setYear("");
+      setSubjectId(""); setSubjectName(""); setImageURL(""); setSemester(""); setYear("");
       setTimeout(() => setSuccessMsg(""), 3000);
     } catch (err) {
       console.error("Error adding subject:", err);
@@ -41,29 +43,12 @@ function AddSubject() {
       <div className="add-subject-container">
         <h2>➕ Add New Subject</h2>
         <div className="add-subject-form">
-          <input
-            type="text"
-            placeholder="Subject ID (e.g., advanced_java)"
-            value={subjectId}
-            onChange={e => setSubjectId(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Name (e.g., Advanced Java)"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={imageURL}
-            onChange={e => setImageURL(e.target.value)}
-          />
+          <input placeholder="Subject ID (e.g., chemistry)" value={subjectId} onChange={e => setSubjectId(e.target.value)} />
+          <input placeholder="Subject Name (e.g., Chemistry)" value={subjectName} onChange={e => setSubjectName(e.target.value)} />
+          <input placeholder="Image URL" value={imageURL} onChange={e => setImageURL(e.target.value)} />
           <select value={semester} onChange={e => setSemester(e.target.value)}>
             <option value="">Select Semester</option>
-            {[...Array(8)].map((_, idx) => (
-              <option key={idx+1} value={String(idx+1)}>{idx+1}</option>
-            ))}
+            {[...Array(8)].map((_, idx) => <option key={idx+1} value={String(idx+1)}>{idx+1}</option>)}
           </select>
           <select value={year} onChange={e => setYear(e.target.value)}>
             <option value="">Select Year</option>
@@ -80,5 +65,5 @@ function AddSubject() {
     </div>
   );
 }
- 
+
 export default AddSubject;

@@ -1,4 +1,3 @@
-// src/Components/SearchSubjects.js
 import React, { useContext, useState } from 'react';
 import { SubjectsContext } from './SubjectsContext';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,7 @@ function SearchSubjects() {
   if (loading) return null; // hide everything while loading
 
   const filtered = subjects.filter(subj =>
-    subj.name.toLowerCase().includes(search.toLowerCase())
+    (subj.subject || '').toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -37,7 +36,7 @@ function SearchSubjects() {
                 to={`/year/${subj.year}/semester/${subj.semester}/subject/${subj.id}`}
                 className="search-item"
               >
-                {subj.name}
+                {subj.subject}
               </Link>
             ))
           ) : (

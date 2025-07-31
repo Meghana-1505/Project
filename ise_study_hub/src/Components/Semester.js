@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import SearchSubjects from './SearchSubjects';
 import '../Styles/Semester.css';
+import LogoutButton from './LogoutButton';
+
 
 import firstSemLogo from '../Assets/Firstsem.jpeg';
 import secondSemLogo from '../Assets/Secondsem.jpeg';
@@ -41,6 +43,7 @@ function Semester() {
   return (
     <div className="semester-page">
       <Dashboard />
+      <LogoutButton />
       <div className="search-container">
         <SearchSubjects />
       </div>

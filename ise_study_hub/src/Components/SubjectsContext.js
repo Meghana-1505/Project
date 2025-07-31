@@ -1,4 +1,3 @@
-// src/Components/SubjectsContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
@@ -12,13 +11,12 @@ export function SubjectsProvider({ children }) {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const snapshot = await getDocs(collection(db, 'Subjects'));
+        const snapshot = await getDocs(collection(db, 'Subject and Materials'));
         const subjectsList = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }));
         setSubjects(subjectsList);
-        console.log('Fetched subjects:', subjectsList); // optional debug
       } catch (error) {
         console.error('Failed to fetch subjects:', error);
       } finally {

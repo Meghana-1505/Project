@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import SearchSubjects from './SearchSubjects';
 import '../Styles/Year.css';
+import LogoutButton from './LogoutButton';
+
 
 import year1Logo from '../Assets/FirstYear.jpg';
 import year2Logo from '../Assets/SecondYear.jpg';
@@ -15,6 +17,7 @@ const Year = () => {
     <div className="year-page">
       <Dashboard />
       <SearchSubjects />
+      <LogoutButton />
 
       <h1 className="year-title">Select Year</h1>
       <div className="year-list">

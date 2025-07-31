@@ -5,6 +5,8 @@ import { db } from '../firebaseConfig';
 import '../Styles/SemesterSubjects.css';
 import Dashboard from './Dashboard';
 import SearchSubjects from './SearchSubjects';
+import LogoutButton from './LogoutButton';
+
 
 const SemesterSubjects = () => {
   const { year, semesterId } = useParams();
@@ -16,15 +18,19 @@ const SemesterSubjects = () => {
     const fetchSubjects = async () => {
       try {
         const q = query(
-          collection(db, "Subjects"),
-          where("year", "==", year),
-          where("semester", "==", semesterId)
+          collection(db, 'Subject and Materials'),
+          where('year', '==', year),
+          where('semester', '==', semesterId)
         );
         const snapshot = await getDocs(q);
-        const fetched = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const fetched = snapshot.docs.map(doc => ({
+          id: doc.id,                       // keep id for navigation
+          subject: doc.data().subject,      // use 'subject' field for display
+          imageURL: doc.data().imageURL
+        }));
         setSubjects(fetched);
       } catch (err) {
-        console.error("Error fetching subjects:", err);
+        console.error('Error fetching subjects:', err);
       } finally {
         setLoading(false);
       }
@@ -33,28 +39,29 @@ const SemesterSubjects = () => {
   }, [year, semesterId]);
 
   const filteredSubjects = subjects.filter(subject =>
-    subject.name?.toLowerCase().includes(searchText.toLowerCase())
+    subject.subject?.toLowerCase().includes(searchText.toLowerCase())
   );
 
   return (
-    <div className="semester-subjects">
+    <div className="semester-subjects-page">
       <Dashboard />
+      <LogoutButton />
       <SearchSubjects search={searchText} setSearch={setSearchText} />
-      <h1>{`Subjects for Semester ${semesterId}`}</h1>
+      <h1 className="semester-title">{`Subjects for Semester ${semesterId}`}</h1>
       {loading ? (
         <p>Loading...</p>
       ) : filteredSubjects.length === 0 ? (
-        <p style={{ fontSize: "2.5rem", fontWeight: "bold" }}>No subjects found.</p>
+        <p className="no-subjects">No subjects found.</p>
       ) : (
         <div className="subjects-list">
-          {filteredSubjects.map((subject) => (
+          {filteredSubjects.map(subject => (
             <Link
               key={subject.id}
               to={`/year/${year}/semester/${semesterId}/subject/${subject.id}`}
-              className="subject-item"
+              className="subject-card"
             >
-              <img src={subject.imageURL} alt={subject.name} className="subject-image" />
-              <span>{subject.name}</span>
+              <img src={subject.imageURL} alt={subject.subject} className="subject-image" />
+              <div className="subject-name">{subject.subject}</div>
             </Link>
           ))}
         </div>

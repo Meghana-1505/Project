@@ -1,19 +1,27 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-// import { getAnalytics } from "firebase/analytics";  // optional if you don’t need analytics
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
+// your config
 const firebaseConfig = {
-  apiKey: "AIzaSyBJvpRPIL_MAeXtscVjZXfMJGS7m5iKZUc",
-  authDomain: "ise-study-hub.firebaseapp.com",
-  projectId: "ise-study-hub",
-  storageBucket: "ise-study-hub.appspot.com",   // fix typo: should be appspot.com not firebasestorage.app
-  messagingSenderId: "91302855029",
-  appId: "1:91302855029:web:31b60be945b3eacaa3d33c",
-  measurementId: "G-DNS6LDWN98"
+  apiKey: "AIzaSyAK7QeJBQQdVifEXeByZ_38WDKB-j2FmxE",
+  authDomain: "ise-study-hub-6e6ec.firebaseapp.com",
+  projectId: "ise-study-hub-6e6ec",
+  storageBucket: "ise-study-hub-6e6ec.appspot.com",
+  messagingSenderId: "984967787915",
+  appId: "1:984967787915:web:bde6e0c7fb2c7e44352b8e",
+  measurementId: "G-40HPMH6STS"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-// const analytics = getAnalytics(app);  // optional
+const analytics = getAnalytics(app);
 
-export { db };
+// Initialize Firestore & Auth
+const db = getFirestore(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+// Export so you can use in your components
+export { db, auth, googleProvider };

@@ -6,7 +6,12 @@
   min-height: 100vh;
   padding: 20px;
   color: white; /* Ensures readability over the background */
+} 
+
+.subject-materials-page h1 {
+  text-align: center;
 }
+
 
 .materials-container {
   max-width: 800px;

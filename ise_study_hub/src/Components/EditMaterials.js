@@ -1,20 +1,20 @@
-// src/Components/EditMaterials.js
 import React, { useState, useEffect } from "react";
-import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import "../Styles/EditMaterials.css";
 
 function EditMaterials() {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
-  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubjectId, setSelectedSubjectId] = useState("");
   const [subjects, setSubjects] = useState([]);
   const [materials, setMaterials] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [editingId, setEditingId] = useState(null);
-  const [materialMessages, setMaterialMessages] = useState({}); // local messages per material
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedModuleName, setEditedModuleName] = useState("");
+  const [editedUrl, setEditedUrl] = useState("");
+  const [materialMessages, setMaterialMessages] = useState({});
 
-  // Fetch subjects when year & semester are selected
+  // Fetch subjects when year & semester change
   useEffect(() => {
     const fetchSubjects = async () => {
       if (!selectedYear || !selectedSemester) {
@@ -23,16 +23,16 @@ function EditMaterials() {
       }
       try {
         const q = query(
-          collection(db, "Subjects"),
+          collection(db, "Subject and Materials"),
           where("year", "==", selectedYear),
           where("semester", "==", selectedSemester)
         );
         const snapshot = await getDocs(q);
-        const fetchedSubjects = snapshot.docs.map(docSnap => ({
-          id: docSnap.id,
-          ...docSnap.data()
+        const fetched = snapshot.docs.map(docSnap => ({
+          id: docSnap.id,                     // doc id for value
+          subject: docSnap.data().subject     // subject name for display
         }));
-        setSubjects(fetchedSubjects);
+        setSubjects(fetched);
       } catch (err) {
         console.error("Error fetching subjects:", err);
       }
@@ -40,158 +40,149 @@ function EditMaterials() {
     fetchSubjects();
   }, [selectedYear, selectedSemester]);
 
-  // Helper: show message for specific material
-  const showMaterialMessage = (materialId, message) => {
-    setMaterialMessages(prev => ({ ...prev, [materialId]: message }));
+  const showMaterialMessage = (index, message) => {
+    setMaterialMessages(prev => ({ ...prev, [index]: message }));
     setTimeout(() => {
-      setMaterialMessages(prev => ({ ...prev, [materialId]: "" }));
-    }, 3000);
+      setMaterialMessages(prev => ({ ...prev, [index]: "" }));
+    }, 2000);
   };
 
-  // Fetch materials
+  // Fetch materials for selected subject
   const fetchMaterials = async () => {
-    if (!selectedYear || !selectedSemester || !selectedSubject) {
-      alert("Please select Year, Semester, and Subject first.");
+    if (!selectedSubjectId) {
+      alert("Please select a subject!");
       return;
     }
-    setLoading(true);
     try {
-      const q = query(
-        collection(db, "materials"),
-        where("year", "==", selectedYear),
-        where("semester", "==", selectedSemester),
-        where("subject", "==", selectedSubject.trim())
-      );
-      const snapshot = await getDocs(q);
-      const fetched = snapshot.docs.map(docSnap => ({
-        id: docSnap.id,
-        ...docSnap.data()
-      }));
-      fetched.sort((a, b) => {
-        if (a.module?.startsWith("Module") && b.module?.startsWith("Module")) {
-          return parseInt(a.module.split(" ")[1]) - parseInt(b.module.split(" ")[1]);
-        }
-        return (a.module || '').localeCompare(b.module || '');
-      });
-      setMaterials(fetched);
+      const docRef = doc(db, "Subject and Materials", selectedSubjectId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setMaterials(docSnap.data().materials || []);
+      } else {
+        alert("No materials found.");
+      }
     } catch (err) {
       console.error("Error fetching materials:", err);
-    } finally {
-      setLoading(false);
     }
   };
 
-  // Update material
-  const handleUpdate = async (materialId, updatedModule, updatedUrl) => {
+  // Start editing mode
+  const startEditing = (index) => {
+    const oldEntry = materials[index];
+    const oldModuleName = Object.keys(oldEntry)[0];
+    const oldUrl = oldEntry[oldModuleName];
+    setEditedModuleName(oldModuleName);
+    setEditedUrl(oldUrl);
+    setEditingIndex(index);
+  };
+
+  // Save updated module name and URL
+  const handleUpdate = async (index) => {
+    const oldEntry = materials[index];
+    const updatedEntry = { [editedModuleName.trim()]: editedUrl.trim() };
     try {
-      const docRef = doc(db, "materials", materialId);
-      await updateDoc(docRef, { module: updatedModule.trim(), url: updatedUrl.trim() });
-      showMaterialMessage(materialId, "Material updated successfully!");
-      setEditingId(null);
+      const docRef = doc(db, "Subject and Materials", selectedSubjectId);
+      await updateDoc(docRef, {
+        materials: arrayRemove(oldEntry)
+      });
+      await updateDoc(docRef, {
+        materials: arrayUnion(updatedEntry)
+      });
+      showMaterialMessage(index, "✅ Updated!");
+      setEditingIndex(null);
       fetchMaterials();
     } catch (err) {
-      console.error("Error updating:", err);
-      showMaterialMessage(materialId, "Failed to update material.");
+      console.error("Update failed:", err);
+      showMaterialMessage(index, "❌ Failed.");
     }
   };
 
   // Delete material
-  const handleDelete = async (materialId) => {
-    if (!window.confirm("Are you sure to delete this material?")) return;
+  const handleDelete = async (index) => {
+    const oldEntry = materials[index];
+    if (!window.confirm("Are you sure you want to delete?")) return;
     try {
-      await deleteDoc(doc(db, "materials", materialId));
-      showMaterialMessage(materialId, "Material deleted!");
+      const docRef = doc(db, "Subject and Materials", selectedSubjectId);
+      await updateDoc(docRef, {
+        materials: arrayRemove(oldEntry)
+      });
+      showMaterialMessage(index, "✅ Deleted!");
       fetchMaterials();
     } catch (err) {
-      console.error("Error deleting:", err);
-      showMaterialMessage(materialId, "Failed to delete material.");
+      console.error("Delete failed:", err);
+      showMaterialMessage(index, "❌ Failed.");
     }
   };
 
   return (
-  <div className="edit-materials-background">
-    <div className="edit-materials-container">
-      <h2>✏️ Edit Materials</h2>
+    <div className="edit-materials-background">
+      <div className="edit-materials-container">
+        <h2>✏️ Edit Materials</h2>
 
-      <div className="edit-materials-form">
-        <select value={selectedYear} onChange={e => setSelectedYear(e.target.value)}>
-          <option value="">Select Year</option>
-          <option value="1">1st Year</option>
-          <option value="2">2nd Year</option>
-          <option value="3">3rd Year</option>
-          <option value="4">4th Year</option>
-        </select>
-        <select value={selectedSemester} onChange={e => setSelectedSemester(e.target.value)}>
-          <option value="">Select Semester</option>
-          {[...Array(8)].map((_, idx) => (
-            <option key={idx+1} value={String(idx+1)}>{idx+1}</option>
-          ))}
-        </select>
-        <select value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)}>
-          <option value="">Select Subject</option>
-          {subjects.map(subj => (
-            <option key={subj.id} value={subj.id}>{subj.name}</option>
-          ))}
-        </select>
-        <button onClick={fetchMaterials}>Fetch Materials</button>
-      </div>
+        <div className="edit-materials-form">
+          <select value={selectedYear} onChange={e => setSelectedYear(e.target.value)}>
+            <option value="">Select Year</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
+          <select value={selectedSemester} onChange={e => setSelectedSemester(e.target.value)}>
+            <option value="">Select Semester</option>
+            {[...Array(8)].map((_, idx) => (
+              <option key={idx + 1} value={String(idx + 1)}>{idx + 1}</option>
+            ))}
+          </select>
+          <select value={selectedSubjectId} onChange={e => setSelectedSubjectId(e.target.value)}>
+            <option value="">Select Subject</option>
+            {subjects.map(subj => (
+              <option key={subj.id} value={subj.id}>{subj.subject}</option>
+            ))}
+          </select>
+          <button onClick={fetchMaterials}>Fetch Materials</button>
+        </div>
 
-      {loading && <p>Loading...</p>}
-
-      {materials.length > 0 && (
-        <div>
-          <h3>Materials List</h3>
-          {materials.map(mat => (
-            <div key={mat.id} className="material-card">
-              {editingId === mat.id ? (
+        {materials.length > 0 && materials.map((mat, idx) => {
+          const moduleName = Object.keys(mat)[0];
+          const url = mat[moduleName];
+          return (
+            <div key={idx} className="material-card">
+              {editingIndex === idx ? (
                 <>
                   <input
                     type="text"
-                    value={mat.module}
-                    onChange={e =>
-                      setMaterials(prev =>
-                        prev.map(m => m.id === mat.id ? { ...m, module: e.target.value } : m)
-                      )
-                    }
+                    value={editedModuleName}
+                    onChange={e => setEditedModuleName(e.target.value)}
+                    placeholder="Module Name"
                   />
                   <input
                     type="url"
-                    value={mat.url}
-                    onChange={e =>
-                      setMaterials(prev =>
-                        prev.map(m => m.id === mat.id ? { ...m, url: e.target.value } : m)
-                      )
-                    }
+                    value={editedUrl}
+                    onChange={e => setEditedUrl(e.target.value)}
+                    placeholder="Material URL"
                   />
+                  <div className="material-actions">
+                    <button className="save-btn" onClick={() => handleUpdate(idx)}>Save</button>
+                    <button className="cancel-btn" onClick={() => setEditingIndex(null)}>Cancel</button>
+                  </div>
                 </>
               ) : (
                 <>
-                  <p><strong>Module:</strong> {mat.module}</p>
-                  <p><strong>URL:</strong> <a href={mat.url} target="_blank" rel="noopener noreferrer">{mat.url}</a></p>
+                  <p><strong>{moduleName}</strong></p>
+                  <a href={url} target="_blank" rel="noreferrer">{url}</a>
+                  <div className="material-actions">
+                    <button onClick={() => startEditing(idx)}>Edit</button>
+                    <button onClick={() => handleDelete(idx)}>Delete</button>
+                  </div>
                 </>
               )}
-              <div className="material-actions">
-                <button onClick={() => setEditingId(mat.id)}>Edit</button>
-                <button onClick={() => handleUpdate(mat.id, mat.module, mat.url)} disabled={editingId !== mat.id}>Save</button>
-                <button onClick={() => handleDelete(mat.id)}>Delete</button>
-              </div>
-              {materialMessages[mat.id] && (
-                <p className="material-message" style={{
-                  color: materialMessages[mat.id].startsWith ? "red" :
-                        materialMessages[mat.id].startsWith ? "orange" :
-                        "green"
-                }}>
-                  {materialMessages[mat.id]}
-                </p>
-              )}
+              {materialMessages[idx] && <p className="material-message">{materialMessages[idx]}</p>}
             </div>
-          ))}
-        </div>
-      )}
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
-
+  );
 }
 
 export default EditMaterials;
